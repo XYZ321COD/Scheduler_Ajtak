@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Drag n Drop</title>
+
+    <link rel="stylesheet" href="main.css"/>
+</head>
+<body>
+<div class="app">
+    <header>
+        <h1 id="tableName">Year-1</h1>
+    </header>
+    <div class="scheduler" id="scheduler1">
+        <div class="day">
+            <div class="name">Time</div>
+            <div class="plan">
+                <div class="time">
+                    <div class="list-item2">8:00</div>
+                    <div class="list-item2">9:00</div>
+                    <div class="list-item2">10:00</div>
+                    <div class="list-item2">11:00</div>
+                    <div class="list-item2">12:00</div>
+                    <div class="list-item2">13:00</div>
+                    <div class="list-item2">14:00</div>
+                    <div class="list-item2">15:00</div>
+                    <div class="list-item2">16:00</div>
+                    <div class="list-item2">17:00</div>
+                </div>
+            </div>
+        </div>
+        <div class="day">
+            <div class="name">Monday</div>
+            <div class="lists">
+                <div class="list">
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                </div>
+                <div class="list">
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                </div>
+                <div class="list">
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                </div>
+            </div>
+        </div>
+        <div class="day">
+            <div class="name">Tuesday</div>
+            <div class="lists">
+                <div class="list">
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                </div>
+                <div class="list">
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                </div>
+                <div class="list">
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                </div>
+            </div>
+        </div>
+        <div class="day">
+            <div class="name">Wednesday</div>
+            <div class="lists">
+                <div class="list">
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                </div>
+                <div class="list">
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                </div>
+                <div class="list">
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                </div>
+            </div>
+        </div>
+        <div class="day">
+            <div class="name">Thursday</div>
+            <div class="lists">
+                <div class="list">
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                </div>
+                <div class="list">
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                </div>
+                <div class="list">
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                </div>
+            </div>
+        </div>
+        <div class="day">
+            <div class="name">Friday</div>
+            <div class="lists">
+                <div class="list">
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                </div>
+                <div class="list">
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                </div>
+                <div class="list">
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="scheduler2" id="scheduler2">
+        <div class="day">
+            <div class="name">Time</div>
+            <div class="plan">
+                <div class="time">
+                    <div class="list-item2">8:00</div>
+                    <div class="list-item2">9:00</div>
+                    <div class="list-item2">10:00</div>
+                    <div class="list-item2">11:00</div>
+                    <div class="list-item2">12:00</div>
+                    <div class="list-item2">13:00</div>
+                    <div class="list-item2">14:00</div>
+                    <div class="list-item2">15:00</div>
+                    <div class="list-item2">16:00</div>
+                    <div class="list-item2">17:00</div>
+                </div>
+            </div>
+        </div>
+        <div class="day">
+            <div class="name">Monday</div>
+            <div class="lists">
+                <div class="list">
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                </div>
+                <div class="list">
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                </div>
+                <div class="list">
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                </div>
+            </div>
+        </div>
+        <div class="day">
+            <div class="name">Tuesday</div>
+            <div class="lists">
+                <div class="list">
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                </div>
+                <div class="list">
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                </div>
+                <div class="list">
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                </div>
+            </div>
+        </div>
+        <div class="day">
+            <div class="name">Wednesday</div>
+            <div class="lists">
+                <div class="list">
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                </div>
+                <div class="list">
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                </div>
+                <div class="list">
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                </div>
+            </div>
+        </div>
+        <div class="day">
+            <div class="name">Thursday</div>
+            <div class="lists">
+                <div class="list">
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                </div>
+                <div class="list">
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                </div>
+                <div class="list">
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                </div>
+            </div>
+        </div>
+        <div class="day">
+            <div class="name">Friday</div>
+            <div class="lists">
+                <div class="list">
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                </div>
+                <div class="list">
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                </div>
+                <div class="list">
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                    <div class="list-item" ></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <header>
+        <div class ="h1">Subjects</div>
+    </header>
+    <div class="subjects">
+        <div class="subject" draggable="true" >English A SL</div>
+        <div class="subject" draggable="true" >English A HL </div>
+        <div class="subject" draggable="true" >English B SL</div>
+        <div class="subject" draggable="true" >English B HL</div>
+        <div class="subject" draggable="true" >Polish A SL</div>
+        <div class="subject" draggable="true" >Polish A HL</div>
+        <div class="subject" draggable="true" >German B HL</div>
+        <div class="subject" draggable="true" >German B SL</div>
+        <div class="subject" draggable="true" >Spanish B SL</div>
+        <div class="subject" draggable="true" >Spanish B HL</div>
+        <div class="subject" draggable="true" >French B SL</div>
+        <div class="subject" draggable="true" >French B HL</div>
+        <div class="subject" draggable="true" >Geography SL</div>
+        <div class="subject" draggable="true" >Geography HL</div>
+        <div class="subject" draggable="true" >Economy HL</div>
+        <div class="subject" draggable="true" >Business Man SL</div>
+        <div class="subject" draggable="true" >Business Man HL</div>
+        <div class="subject" draggable="true" >SEHS</div>
+        <div class="subject" draggable="true" >Psychology SL</div>
+        <div class="subject" draggable="true" >Psychology HL</div>
+        <div class="subject" draggable="true" >Computer Science</div>
+        <div class="subject" draggable="true" >Biology SL</div>
+        <div class="subject" draggable="true" >Biology HL</div>
+        <div class="subject" draggable="true" >Chemistry SL</div>
+        <div class="subject" draggable="true" >Chemistry HL</div>
+        <div class="subject" draggable="true" >Physics SL</div>
+        <div class="subject" draggable="true" >Physics HL</div>
+        <div class="subject" draggable="true" >Math Studies</div>
+        <div class="subject" draggable="true" >Math SL</div>
+        <div class="subject" draggable="true" >Math HL</div>
+    </div>
+    <label class="switch">
+        <input type="checkbox" checked>
+        <span class="slider round"></span>
+    </label>
+</div>
+<script src="main.js"></script>
+</body>
+</html>
