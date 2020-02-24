@@ -1,29 +1,27 @@
 const list_items = document.querySelectorAll('.list-item');
-// const lists = document.querySelectorAll('.list');
-const subject_items = document.querySelectorAll('.subject');
 
-const scheduler = document.querySelectorAll('.scheduler');
-const scheduler2 = document.querySelectorAll('.scheduler2');
-
+let  Classrooms = [];
 let draggedItem = null;
 
-document.addEventListener('DOMContentLoaded', function () {
-    let checkbox = document.querySelector('input[type="checkbox"]');
 
-    checkbox.addEventListener('change', function () {
-        if (checkbox.checked) {
-            // do this
-            document.getElementById("tableName").innerHTML = "Year-1"
-            document.getElementById("scheduler1").style.display = 'flex';
-            document.getElementById("scheduler2").style.display = 'none';
-        } else {
-            document.getElementById("tableName").innerHTML = "Year-2"
-            document.getElementById("scheduler1").style.display = 'none';
-            document.getElementById("scheduler2").style.display = 'flex';
+// Reading data about classrooms
+function appendData(json) {
+    Classrooms = json.filter(obj => {
+        return !Classrooms.includes(obj)});
+    Classrooms.sort(function(a,b){ return a.numberOfSeats - b.numberOfSeats});
+}
+
+function minimalClassroom(numberOfSeats){
+    for (i = 0; i< Classrooms.length;i++){
+        if(Classrooms[i].numberOfSeats > numberOfSeats){
+            return Classrooms[i];
         }
-    });
-});
+    }
+    throw "Not enough Space"
+}
 
+
+ // Functionality for time-box
 for (let j = 0; j < list_items.length; j++) {
     const list = list_items[j];
 
@@ -31,9 +29,9 @@ for (let j = 0; j < list_items.length; j++) {
         e.preventDefault();
     });
 
-    list.addEventListener('dragenter', function (e) {
+    list.addEventListener('dragenter', function () {
             if(this.dropped){
-
+                //
             }
             else {
                 this.lastcolor = this.style.backgroundColor;
@@ -41,44 +39,61 @@ for (let j = 0; j < list_items.length; j++) {
             }
     });
 
-    list.addEventListener('dragleave', function (e) {
+    list.addEventListener('dragleave', function () {
             if(this.dropped){
-
+                //
             }
             else {
                 this.style.backgroundColor = this.lastcolor;
             }
     });
 
-    list.addEventListener('drop', function (e) {
+    list.addEventListener('drop', function () {
         console.log('drop');
-        this.innerHTML  = draggedItem.innerHTML
+        this.innerHTML  = draggedItem.innerHTML;
         draggedItem.style.display = 'none';
         this.style.backgroundColor = 'rgba(237, 199, 183,1 )';
         this.dropped = true
     });
 
-    list.addEventListener('click',function (e) {
-        if(this.dropped) {
-            window.alert("You can add something");
+    list.addEventListener('click',function () {
+        if(this.dropped && !this.clicked) {
+            let actualElement;
+            let numberOfSeats = window.prompt("Podaj liczbe miejsc");
+
+            try {
+                numberOfSeats = parseInt(numberOfSeats);
+                if(isNaN(numberOfSeats)){
+                    throw "is not a number";
+                }
+                try {
+                    actualElement  = minimalClassroom(numberOfSeats);
+                    this.classroom = actualElement.classroom
+
+                }
+                catch(err){
+                    window.alert(err);
+                    this.classroom = "";
+                }
+            }
+            catch(err){
+                window.alert("Entered value " + err);
+                this.classroom = "";
+            }
+            if(this.classroom === "") {
+                this.clicked = false;
+            }
+            else {
+                this.innerHTML  = this.innerHTML + " " +  this.classroom;
+                this.clicked = true;
+
+            }
         }
     })
 }
 
 
-for (let i = 0; i < subject_items.length; i++) {
-    const item = subject_items[i];
-    item.addEventListener('dragstart', function () {
-        draggedItem = item;
-        setTimeout(function () {
-            item.style.display = 'none';
-        }, 0)
-    });
+window.onload = function () {
+    appendData(data);
+};
 
-    item.addEventListener('dragend', function () {
-        setTimeout(function () {
-            draggedItem.style.display = 'flex';
-            draggedItem = null;
-        }, 0);
-    })
-}
