@@ -84,7 +84,8 @@ for (let j = 0; j < list_items.length; j++) {
                 this.clicked = false;
             }
             else {
-                this.innerHTML  = this.innerHTML + " " +  this.classroom;
+                this.style.fontSize = '3mm'
+                this.innerHTML  = this.innerHTML + ' classroom: ' +  this.classroom;
                 this.clicked = true;
 
             }
