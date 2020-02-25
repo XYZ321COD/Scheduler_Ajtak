@@ -1,5 +1,5 @@
 
-const data = [
+const classRoomsData = [
     {
         "classroom": 218,
         "numberOfSeats": 6
