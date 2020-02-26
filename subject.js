@@ -1,12 +1,9 @@
 
 function loadSubjects() {
 
-
     const subject_items = document.querySelectorAll('.subject');
-//Functionality for draggable subjects
-
-    for (let i = 0; i < subject_items.length; i++) {
-        const item = subject_items[i];
+    //Functionality for draggable subjects
+    subject_items.forEach(item => {
         item.addEventListener('dragstart', function () {
             draggedItem = item;
             setTimeout(function () {
@@ -19,6 +16,6 @@ function loadSubjects() {
                 draggedItem.style.display = 'flex';
                 draggedItem = null;
             }, 0);
-        })
-    }
+        });
+    });
 }

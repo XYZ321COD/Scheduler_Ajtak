@@ -1,47 +1,44 @@
-const numberOfHours = 10;
-const ColumnsPerDay = 3;
 let Classrooms = [];
 let draggedItem = null;
-let Days =['Monday','Tuesday','Wednesday','Thursday','Friday'];
 
 
 function appendSubject(json) {
     json.forEach(obj => {
-        document.getElementById('subjects').innerHTML += '<div class="subject" draggable="true" >'+ obj.subject +'</div>';
+        document.getElementById('subjects').innerHTML += '<div class="subject" draggable="true" >' + obj.subject + '</div>';
     });
 }
 
 
 function appendTimeBoxes() {
-    for (let i = 8; i < numberOfHours + 8; i++) {
-        let currentTime = i + ":00";
-        document.getElementById('time').innerHTML += '<div class="list-item2" >'+ currentTime +'</div>';
-        document.getElementById('time2').innerHTML += '<div class="list-item2" >'+ currentTime +'</div>';
-    }
+    config.hoursTable.forEach(hour => {
+        document.getElementById('time').innerHTML += '<div class="list-item2" >' + hour + '</div>';
+        document.getElementById('time2').innerHTML += '<div class="list-item2" >' + hour + '</div>';
+    });
 }
 
 function appendDays() {
-    for (let iter=1;iter<3;iter++) {
-        for (let j = 0; j < Days.length; j++) {
-            for (let i = 0; i < ColumnsPerDay; i++) {
-                let currentList = 'column ' + Days[j] + iter + ' ' + i;
-                document.getElementById(Days[j] + iter).innerHTML += '<div class="list" id="' + currentList + '" ></div>';
-            }
-        }
-    }
+    config.SchedulersNr.forEach(numberOfScheduler => {
+        config.Days.forEach(day => {
+            config.ColumnsPerDay.forEach(columnNr => {
+                let currentList = 'column ' + day + numberOfScheduler + ' ' + columnNr;
+                document.getElementById(day + numberOfScheduler).innerHTML += '<div class="list" id="' + currentList + '" ></div>';
+            });
+        });
+    });
 }
 
+
 function appendSubjectBoxes() {
-    for (let iter=1;iter<3;iter++) {
-        for (let iter1 = 0; iter1 < Days.length; iter1++) {
-            for (let iter2 = 0; iter2 < ColumnsPerDay; iter2++) {
-                let currentList = 'column ' + Days[iter1] + iter + ' ' + iter2;
-                for (let iter3 = 0; iter3 < numberOfHours; iter3++) {
+    config.SchedulersNr.forEach(numberOfScheduler => {
+        config.Days.forEach(day => {
+            config.ColumnsPerDay.forEach(columnNr => {
+                let currentList = 'column ' + day + numberOfScheduler + ' ' + columnNr;
+                config.hoursTable.forEach(hours => {
                     document.getElementById(currentList).innerHTML += '<div class="list-item" ></div>';
-                }
-            }
-        }
-    }
+                });
+            });
+        });
+    });
 }
 
 function appendData(json) {
@@ -53,29 +50,30 @@ function appendData(json) {
     });
 }
 
+
 function minimalClassroom(numberOfSeats) {
-    for (i = 0; i < Classrooms.length; i++) {
-        if (Classrooms[i].numberOfSeats > numberOfSeats) {
-            return Classrooms[i];
-        }
+    let potentialRooms = Classrooms.filter(obj => {
+        return (obj.numberOfSeats > numberOfSeats)
+    });
+    if (potentialRooms.length === 0) {
+        throw "Not enough Space";
     }
-    throw "Not enough Space"
+    return potentialRooms[0];
 }
 
 
 // Functionality for time-box
 function timeboxfunctioanlity() {
     const list_items = document.querySelectorAll('.list-item');
-    for (let j = 0; j < list_items.length; j++) {
-        const list = list_items[j];
 
+    list_items.forEach(list => {
         list.addEventListener('dragover', function (e) {
             e.preventDefault();
         });
 
         list.addEventListener('dragenter', function () {
             if (this.dropped) {
-                //
+                // if there is subject already enter do nothing
             } else {
                 this.lastcolor = this.style.backgroundColor;
                 this.style.backgroundColor = 'rgba(150, 231, 220, 0.5)';
@@ -84,7 +82,7 @@ function timeboxfunctioanlity() {
 
         list.addEventListener('dragleave', function () {
             if (this.dropped) {
-                //
+                // don't change color
             } else {
                 this.style.backgroundColor = this.lastcolor;
             }
@@ -129,8 +127,8 @@ function timeboxfunctioanlity() {
 
                 }
             }
-        })
-    }
+        });
+    });
 }
 
 
