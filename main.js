@@ -4,13 +4,29 @@
  * @type {Array}
  */
 let Classrooms = [];
-
+let mapOfClassesForEachHourInDay = {}
 /**
  * @var draggedItem
  * @description One of the subject-boxes that we are currently dragging.
  * @type {Object}
  */
 let draggedItem = null;
+
+/**
+ * @description Creates map, which holds reserved classrooms with accuracy to day and hour.
+ */
+function createMap() {
+    config.schedulersNr.forEach(numberOfScheduler => {
+        config.days.forEach(day => {
+            config.columnsPerDay.forEach(columnNr => {
+                config.hoursTable.forEach(hour => {
+                    mapOfClassesForEachHourInDay[day + hour] = [];
+                });
+            });
+        });
+    });
+}
+
 
 /**
  * @description Reads data from ClassRooms.js and create list of classrooms, and sorts by number of places.
@@ -71,8 +87,8 @@ function appendSubjectBoxes() {
         config.days.forEach(day => {
             config.columnsPerDay.forEach(columnNr => {
                 let currentList = 'column ' + day + numberOfScheduler + ' ' + columnNr;
-                config.hoursTable.forEach(hours => {
-                    document.getElementById(currentList).innerHTML += '<div class="list-item" ></div>';
+                config.hoursTable.forEach(hour => {
+                    document.getElementById(currentList).innerHTML += '<div class="list-item" id="' + day + hour + '"  ></div>';
                 });
             });
         });
@@ -88,14 +104,13 @@ function appendSubjectBoxes() {
  */
 function minimalClassroom(numberOfSeats) {
     let potentialRooms = Classrooms.filter(obj => {
-        return (obj.numberOfSeats > numberOfSeats)
+        return (obj.numberOfSeats >= numberOfSeats)
     });
     if (potentialRooms.length === 0) {
         throw "Not enough space";
     }
-    return potentialRooms[0];
+    return potentialRooms;
 }
-
 
 
 function addDragOverEvent(object) {
@@ -122,6 +137,7 @@ function addDragEnterEvent(object) {
         }
     });
 }
+
 /**
  * @description How placeholder object will react to ending dragging process of subject object over him.
  * @param {Object} object
@@ -148,12 +164,11 @@ function addDragLeaveEvent(object) {
  */
 function addDropEvent(object) {
     object.addEventListener('drop', function () {
-        if(this.dropped){
+        if (this.dropped) {
             /**
              *  don't change name
              */
-        }
-        else {
+        } else {
             console.log('drop');
             this.innerHTML = draggedItem.innerHTML;
             draggedItem.style.display = 'none';
@@ -173,7 +188,7 @@ function addDropEvent(object) {
 function addClickEvent(object) {
     object.addEventListener('click', function () {
         if (this.dropped && !this.clicked) {
-            let actualElement;
+            let actualElement = null;
             let numberOfSeats = window.prompt("Enter number of seats");
             try {
                 numberOfSeats = parseInt(numberOfSeats);
@@ -181,9 +196,18 @@ function addClickEvent(object) {
                     throw "is not a number";
                 }
                 try {
-                    actualElement = minimalClassroom(numberOfSeats);
-                    this.classroom = actualElement.classroom
-
+                    let iter = 0;
+                    let listOfPotentialClassrooms = minimalClassroom(numberOfSeats);
+                    for (iter; iter < listOfPotentialClassrooms.length; iter++) {
+                        if (mapOfClassesForEachHourInDay[this.id].includes(listOfPotentialClassrooms[iter])) {
+                            continue;
+                        } else {
+                            mapOfClassesForEachHourInDay[this.id].push(listOfPotentialClassrooms[iter]);
+                            actualElement = listOfPotentialClassrooms[iter];
+                            this.classroom = actualElement.classroom;
+                            break;
+                        }
+                    }
                 } catch (err) {
                     window.alert(err);
                     this.classroom = "";
@@ -192,17 +216,18 @@ function addClickEvent(object) {
                 window.alert("Entered value " + err);
                 this.classroom = "";
             }
-            if (this.classroom === "") {
+            if (this.classroom === "" || actualElement === null) {
                 this.clicked = false;
+                window.alert("Every enough classroom is reserved")
             } else {
                 this.style.fontSize = '3mm';
                 this.innerHTML = this.innerHTML + ' classroom: ' + this.classroom;
                 this.clicked = true;
-
             }
         }
     });
 }
+
 /**
  * @description Set all events for placeholders objects.
  *
@@ -221,6 +246,7 @@ window.onload = function () {
     appendData(classRoomsData);
     appendSubjects(subjectsData);
     appendTimeBoxes();
+    createMap();
     appendDays();
     appendSubjectBoxes();
     placeholdersFunctionality();
