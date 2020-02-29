@@ -4,13 +4,29 @@
  * @type {Array}
  */
 let Classrooms = [];
-let mapOfClassesForEachHourInDay = {}
+let mapOfClassesForEachHourInDay = {};
 /**
  * @var draggedItem
  * @description One of the subject-boxes that we are currently dragging.
  * @type {Object}
  */
 let draggedItem = null;
+
+
+function findAvailClassrooms(){
+let str = document.getElementById("text").value;
+let element  = document.getElementById("tableOfClassrooms");
+element.style.display = 'flex';
+element.innerText = '';
+let potentialclassroom = Classrooms.filter(obj => {
+        return !mapOfClassesForEachHourInDay[str].includes(obj);
+    });
+    potentialclassroom.forEach(obj => {
+        document.getElementById('tableOfClassrooms').innerHTML += '<div class="subject"> classroom '+ +obj.classroom + '</div>';
+    });
+
+}
+
 
 /**
  * @description Creates map, which holds reserved classrooms with accuracy to day and hour.
@@ -20,7 +36,7 @@ function createMap() {
         config.days.forEach(day => {
             config.columnsPerDay.forEach(columnNr => {
                 config.hoursTable.forEach(hour => {
-                    mapOfClassesForEachHourInDay[day + hour] = [];
+                    mapOfClassesForEachHourInDay[day + ' ' + hour] = [];
                 });
             });
         });
@@ -88,7 +104,7 @@ function appendSubjectBoxes() {
             config.columnsPerDay.forEach(columnNr => {
                 let currentList = 'column ' + day + numberOfScheduler + ' ' + columnNr;
                 config.hoursTable.forEach(hour => {
-                    document.getElementById(currentList).innerHTML += '<div class="list-item" id="' + day + hour + '"  ></div>';
+                    document.getElementById(currentList).innerHTML += '<div class="list-item" id="' + day + ' ' + hour + '"  ></div>';
                 });
             });
         });
@@ -211,13 +227,13 @@ function addClickEvent(object) {
                 } catch (err) {
                     window.alert(err);
                     this.classroom = "";
+                    this.clicked = false;
                 }
             } catch (err) {
                 window.alert("Entered value " + err);
                 this.classroom = "";
             }
-            if (this.classroom === "" || actualElement === null) {
-                this.clicked = false;
+            if (actualElement === null) {
                 window.alert("Every enough classroom is reserved")
             } else {
                 this.style.fontSize = '3mm';
