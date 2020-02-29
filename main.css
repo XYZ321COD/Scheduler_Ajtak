@@ -89,8 +89,6 @@ header {
 .day {
     display: table;
     flex-flow: column;
-    width: 500px;
-    height: 650px;
 }
 
 .name{
@@ -107,7 +105,6 @@ header {
     display: flex;
     flex: 1;
     width: 500px;
-    height: 650px;
     margin: 0 5px;
     background-color: #eeeeee;
     border-width: thin;
@@ -165,6 +162,25 @@ header {
     right: 30px;
 }
 
+.classrooms {
+    display: none;
+    flex-flow: column;
+    flex: 1;
+    overflow-y: scroll;
+
+    width: 150px;
+    height: 520px;
+    padding: 8px;
+
+    background-color: #eeeeee;
+    transition: all 0.2s linear;
+    border: 1px solid  #bdbdbd;
+
+    position: absolute;
+    left: 10px;
+    top: 240px;
+}
+
 .subject.subject {
     flex-shrink: 0;
     display: flex;
@@ -192,11 +208,11 @@ header {
     font-size: 6mm;
 }
 
-
+/* css for switcher */
 .switch {
     position: absolute;
     left: 30px;
-    top: 100px;
+    top: 20px;
     display: inline-block;
     width: 60px;
     height: 34px;
@@ -246,11 +262,23 @@ input:checked + .slider:before {
     transform: translateX(26px);
 }
 
-/* Rounded sliders */
 .slider.round {
     border-radius: 34px;
 }
 
 .slider.round:before {
     border-radius: 50%;
+}
+
+/* css for input*/
+.input {
+    position: absolute;
+    left: 10px;
+    top: 200px;
+}
+/*css for button*/
+.button {
+    position: absolute;
+    left: 10px;
+    top: 220px;
 }
