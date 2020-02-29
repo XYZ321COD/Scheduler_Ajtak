@@ -1,48 +1,44 @@
-/**
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: main.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: main.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
  * @var Classrooms
  * @description Array of ClassRooms.
  * @type {Array}
  */
 let Classrooms = [];
-let mapOfClassesForEachHourInDay = {};
+
 /**
  * @var draggedItem
  * @description One of the subject-boxes that we are currently dragging.
  * @type {Object}
  */
 let draggedItem = null;
-
-
-function findAvailClassrooms(){
-let str = document.getElementById("text").value;
-let element  = document.getElementById("tableOfClassrooms");
-element.style.display = 'flex';
-element.innerText = '';
-let potentialclassroom = Classrooms.filter(obj => {
-        return !mapOfClassesForEachHourInDay[str].includes(obj);
-    });
-    potentialclassroom.forEach(obj => {
-        document.getElementById('tableOfClassrooms').innerHTML += '<div class="subject"> classroom '+ +obj.classroom + '</div>';
-    });
-
-}
-
-
-/**
- * @description Creates map, which holds reserved classrooms with accuracy to day and hour.
- */
-function createMap() {
-    config.schedulersNr.forEach(numberOfScheduler => {
-        config.days.forEach(day => {
-            config.columnsPerDay.forEach(columnNr => {
-                config.hoursTable.forEach(hour => {
-                    mapOfClassesForEachHourInDay[day + ' ' + hour] = [];
-                });
-            });
-        });
-    });
-}
-
 
 /**
  * @description Reads data from ClassRooms.js and create list of classrooms, and sorts by number of places.
@@ -66,7 +62,7 @@ function appendData(json) {
 
 function appendSubjects(json) {
     json.forEach(obj => {
-        document.getElementById('tableOfSubjects').innerHTML += '<div class="subject" draggable="true" >' + obj.subject + '</div>';
+        document.getElementById('tableOfSubjects').innerHTML += '&lt;div class="subject" draggable="true" >' + obj.subject + '&lt;/div>';
     });
 }
 
@@ -76,8 +72,8 @@ function appendSubjects(json) {
 
 function appendTimeBoxes() {
     config.hoursTable.forEach(hour => {
-        document.getElementById('time').innerHTML += '<div class="list-item2" >' + hour + '</div>';
-        document.getElementById('time2').innerHTML += '<div class="list-item2" >' + hour + '</div>';
+        document.getElementById('time').innerHTML += '&lt;div class="list-item2" >' + hour + '&lt;/div>';
+        document.getElementById('time2').innerHTML += '&lt;div class="list-item2" >' + hour + '&lt;/div>';
     });
 }
 
@@ -89,7 +85,7 @@ function appendDays() {
         config.days.forEach(day => {
             config.columnsPerDay.forEach(columnNr => {
                 let currentList = 'column ' + day + numberOfScheduler + ' ' + columnNr;
-                document.getElementById(day + numberOfScheduler).innerHTML += '<div class="list" id="' + currentList + '" ></div>';
+                document.getElementById(day + numberOfScheduler).innerHTML += '&lt;div class="list" id="' + currentList + '" >&lt;/div>';
             });
         });
     });
@@ -103,8 +99,8 @@ function appendSubjectBoxes() {
         config.days.forEach(day => {
             config.columnsPerDay.forEach(columnNr => {
                 let currentList = 'column ' + day + numberOfScheduler + ' ' + columnNr;
-                config.hoursTable.forEach(hour => {
-                    document.getElementById(currentList).innerHTML += '<div class="list-item" id="' + day + ' ' + hour + '"  ></div>';
+                config.hoursTable.forEach(hours => {
+                    document.getElementById(currentList).innerHTML += '&lt;div class="list-item" >&lt;/div>';
                 });
             });
         });
@@ -120,13 +116,14 @@ function appendSubjectBoxes() {
  */
 function minimalClassroom(numberOfSeats) {
     let potentialRooms = Classrooms.filter(obj => {
-        return (obj.numberOfSeats >= numberOfSeats)
+        return (obj.numberOfSeats > numberOfSeats)
     });
     if (potentialRooms.length === 0) {
         throw "Not enough space";
     }
-    return potentialRooms;
+    return potentialRooms[0];
 }
+
 
 
 function addDragOverEvent(object) {
@@ -153,7 +150,6 @@ function addDragEnterEvent(object) {
         }
     });
 }
-
 /**
  * @description How placeholder object will react to ending dragging process of subject object over him.
  * @param {Object} object
@@ -180,11 +176,12 @@ function addDragLeaveEvent(object) {
  */
 function addDropEvent(object) {
     object.addEventListener('drop', function () {
-        if (this.dropped) {
+        if(this.dropped){
             /**
              *  don't change name
              */
-        } else {
+        }
+        else {
             console.log('drop');
             this.innerHTML = draggedItem.innerHTML;
             draggedItem.style.display = 'none';
@@ -203,8 +200,8 @@ function addDropEvent(object) {
  */
 function addClickEvent(object) {
     object.addEventListener('click', function () {
-        if (this.dropped && !this.clicked) {
-            let actualElement = null;
+        if (this.dropped &amp;&amp; !this.clicked) {
+            let actualElement;
             let numberOfSeats = window.prompt("Enter number of seats");
             try {
                 numberOfSeats = parseInt(numberOfSeats);
@@ -212,38 +209,28 @@ function addClickEvent(object) {
                     throw "is not a number";
                 }
                 try {
-                    let iter = 0;
-                    let listOfPotentialClassrooms = minimalClassroom(numberOfSeats);
-                    for (iter; iter < listOfPotentialClassrooms.length; iter++) {
-                        if (mapOfClassesForEachHourInDay[this.id].includes(listOfPotentialClassrooms[iter])) {
-                            continue;
-                        } else {
-                            mapOfClassesForEachHourInDay[this.id].push(listOfPotentialClassrooms[iter]);
-                            actualElement = listOfPotentialClassrooms[iter];
-                            this.classroom = actualElement.classroom;
-                            break;
-                        }
-                    }
+                    actualElement = minimalClassroom(numberOfSeats);
+                    this.classroom = actualElement.classroom
+
                 } catch (err) {
                     window.alert(err);
                     this.classroom = "";
-                    this.clicked = false;
                 }
             } catch (err) {
                 window.alert("Entered value " + err);
                 this.classroom = "";
             }
-            if (actualElement === null) {
-                window.alert("Every enough classroom is reserved")
+            if (this.classroom === "") {
+                this.clicked = false;
             } else {
                 this.style.fontSize = '3mm';
                 this.innerHTML = this.innerHTML + ' classroom: ' + this.classroom;
                 this.clicked = true;
+
             }
         }
     });
 }
-
 /**
  * @description Set all events for placeholders objects.
  *
@@ -262,10 +249,32 @@ window.onload = function () {
     appendData(classRoomsData);
     appendSubjects(subjectsData);
     appendTimeBoxes();
-    createMap();
     appendDays();
     appendSubjectBoxes();
     placeholdersFunctionality();
     loadSubjects();
 };
 
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Global</h3><ul><li><a href="global.html#addClickEvent">addClickEvent</a></li><li><a href="global.html#addDragEnterEvent">addDragEnterEvent</a></li><li><a href="global.html#addDragLeaveEvent">addDragLeaveEvent</a></li><li><a href="global.html#addDropEvent">addDropEvent</a></li><li><a href="global.html#appendData">appendData</a></li><li><a href="global.html#appendDays">appendDays</a></li><li><a href="global.html#appendSubjectBoxes">appendSubjectBoxes</a></li><li><a href="global.html#appendSubjects">appendSubjects</a></li><li><a href="global.html#appendTimeBoxes">appendTimeBoxes</a></li><li><a href="global.html#checkbox">checkbox</a></li><li><a href="global.html#Classrooms">Classrooms</a></li><li><a href="global.html#draggedItem">draggedItem</a></li><li><a href="global.html#loadSubjects">loadSubjects</a></li><li><a href="global.html#minimalClassroom">minimalClassroom</a></li><li><a href="global.html#placeholdersFunctionality">placeholdersFunctionality</a></li><li><a href="global.html#showscheduler1">showscheduler1</a></li><li><a href="global.html#showscheduler2">showscheduler2</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Fri Feb 28 2020 00:20:06 GMT+0100 (Central European Standard Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

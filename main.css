@@ -5,16 +5,22 @@
 }
 
 body {
-    background-color: #EEE2DC ;
-    font-family: 'Roboto', Helvetica, sans-serif;
+    background: #fff	;
+    /*background: -o-linear-gradient(bottom, #c471f5, #fa71cd);*/
+    /*background: -moz-linear-gradient(bottom, #c471f5, #fa71cd);*/
+    /*background: linear-gradient(bottom, #c471f5, #fa71cd);*/
+    font-family: Lucida Grande,Lucida Sans Unicode,Lucida Sans,Geneva,Verdana,sans-serif;
+
 }
 
 .app {
     display: flex;
     flex-flow: column;
-
-    width: 100vw;
-    height: 600px;
+    top: 400px;
+    margin-left: 200px;
+    margin-right: 300px;
+    width: 1200px;
+    height: 100%;
 }
 
 header {
@@ -26,8 +32,9 @@ header {
 
 .plan {
     display: flex;
-    flex: 1;
-    height: 500px;
+    /*flex: 1;*/
+    top:400px;
+    height: 660px;
     margin: 0 1px;
 }
 
@@ -35,33 +42,37 @@ header {
     display: flex;
     flex-flow: column;
     flex: 1;
-
+    height: 650px;
     width: 100px;
-    background-color: #BAB2B5;
+    background-color: #eeeeee;
     margin: 0 2px;
     padding: 8px;
     transition: all 0.2s linear;
 
 }
 .plan .time .list-item2 {
-    background-color: #AC3B61;
-    border-radius: 8px;
+    color: #fff;
+    display: flex;
+    background-color: #4272d7;
+    border-radius: 20px;
     padding: 10px 15px;
     text-align: center;
     margin: 4px 0px;
     height: 100px;
+    border-width: thin;
+    border-style: solid;
+    border-color: #bdbdbd;
 }
 
 
 
 
 .scheduler {
-
     display: flex;
     flex: 1;
     flex-flow: row;
     width: 100%;
-    height: 300px;
+    height: 650px;
     overflow-x: scroll;
 }
 
@@ -71,31 +82,34 @@ header {
     flex: 1;
     flex-flow: row;
     width: 100%;
-    height: 300px;
+    height: 650px;
     overflow-x: scroll;
 }
 
 .day {
     display: table;
     flex-flow: column;
-    width: 500px;
-    height: 500px;
 }
 
 .name{
     display: flex;
     justify-content: center;
-    height: 20px;
-    border-style: groove;
-    background: #EDC7B7;
+    height: 30px;
+    border-width: thin;
+    border-style: solid;
+    border-color: #bdbdbd;
+    background: #fff;
     margin: 0 2px;
 }
 .lists {
     display: flex;
     flex: 1;
     width: 500px;
-    height: 500px;
     margin: 0 5px;
+    background-color: #eeeeee;
+    border-width: thin;
+    border-style: solid;
+    border-color: #bdbdbd;
 
 }
 
@@ -103,55 +117,85 @@ header {
     display: flex;
     flex-flow: column;
     flex: 1;
-    
+    height: 650px;
     width: 100px;
     margin: 0 2px;
     padding: 8px;
     transition: all 0.2s linear;
+    border-width: thin;
+    border-style: solid;
+    border-color: #bdbdbd;
 }
 
 .lists .list .list-item {
     display: flex;
-    background-color: #BAB2B5;
+    background-color:  #f498b7;
     border-radius: 8px;
     padding: 10px 15px;
     text-align: center;
     margin: 4px 0px;
     height: 100px;
-
+    border-width: thin;
+    border-style: solid;
+    border-color: #bdbdbd;
 }
 
 
 .subjects {
     display: flex;
-    flex-flow: row;
+    flex-flow: column;
     flex: 1;
-    overflow-x: scroll;
+    overflow-y: scroll;
 
-    width: 600px;
+    width: 150px;
+    height: 680px;
     padding: 8px;
     margin-left: 80px;
     margin-right: 80px;
 
+    background-color: #eeeeee;
     transition: all 0.2s linear;
     position: absolute;
-    border: 1px solid #AC3B61;
-    top: 650px;
-    right: 15px;
+    border: 1px solid  #bdbdbd;
+
+    top: 60px;
+    right: 30px;
+}
+
+.classrooms {
+    display: none;
+    flex-flow: column;
+    flex: 1;
+    overflow-y: scroll;
+
+    width: 150px;
+    height: 520px;
+    padding: 8px;
+
+    background-color: #eeeeee;
+    transition: all 0.2s linear;
+    border: 1px solid  #bdbdbd;
+
+    position: absolute;
+    left: 10px;
+    top: 240px;
 }
 
 .subject.subject {
     flex-shrink: 0;
     display: flex;
-    background-color: #BAB2B5;
+    background-color:  #f498b7;
     border-radius: 8px;
     padding: 10px 15px;
     text-align: center;
-    margin-left: 4px;
-    margin-right: 4px;
+    margin-bottom: 4px;
+    margin-top: 4px;
     height: 50px;
     width: 100px;
     font-size: 3mm;
+    border-width: thin;
+    border-style: solid;
+    border-color: #bdbdbd;
 
 }
 
@@ -159,14 +203,16 @@ header {
     position: absolute;
     text-align: center;
     display:flex;
-    top: 600px;
-    right: 350px;
-    font-size: 7mm;
+    top: 20px;
+    right: 150px;
+    font-size: 6mm;
 }
 
-
+/* css for switcher */
 .switch {
-    position: relative;
+    position: absolute;
+    left: 30px;
+    top: 20px;
     display: inline-block;
     width: 60px;
     height: 34px;
@@ -216,11 +262,23 @@ input:checked + .slider:before {
     transform: translateX(26px);
 }
 
-/* Rounded sliders */
 .slider.round {
     border-radius: 34px;
 }
 
 .slider.round:before {
     border-radius: 50%;
+}
+
+/* css for input*/
+.input {
+    position: absolute;
+    left: 10px;
+    top: 200px;
+}
+/*css for button*/
+.button {
+    position: absolute;
+    left: 10px;
+    top: 220px;
 }
