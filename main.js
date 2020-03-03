@@ -13,6 +13,30 @@ let mapOfClassesForEachHourInDay = {};
 let draggedItem = null;
 
 
+function turnIntoPdfVersion() {
+
+
+    let table = document.createElement("table");
+        config.days.forEach(object => {
+           table.innerHTML += ' <tr> <th colspan="2" scope="colgroup">Mars</th>  <th colspan="2" scope="colgroup">Venus</th> </tr>'
+        });
+
+    config.schedulersNr.forEach(numberOfScheduler => {
+        config.days.forEach(day => {
+            config.columnsPerDay.forEach(columnNr => {
+                let currentList = 'column ' + day + numberOfScheduler + ' ' + columnNr;
+                config.hoursTable.forEach(hour => {
+                    document.getElementById(currentList).innerHTML += '<div class="list-item" id="' + day + ' ' + hour + '"  ></div>';
+                });
+            });
+        });
+    });
+
+
+}
+/**
+ *
+ */
 function findAvailClassrooms(){
 let str = document.getElementById("text").value;
 let element  = document.getElementById("tableOfClassrooms");
@@ -24,7 +48,6 @@ let potentialclassroom = Classrooms.filter(obj => {
     potentialclassroom.forEach(obj => {
         document.getElementById('tableOfClassrooms').innerHTML += '<div class="subject"> classroom '+ +obj.classroom + '</div>';
     });
-
 }
 
 
@@ -180,12 +203,11 @@ function addDragLeaveEvent(object) {
  */
 function addDropEvent(object) {
     object.addEventListener('drop', function () {
-        if (this.dropped) {
+        if (this.clicked) {
             /**
              *  don't change name
              */
         } else {
-            console.log('drop');
             this.innerHTML = draggedItem.innerHTML;
             draggedItem.style.display = 'none';
             this.style.backgroundColor = 'rgba(237, 199, 183,1 )';
