@@ -5,21 +5,19 @@
 }
 
 body {
-    background: #fff	;
-    /*background: -o-linear-gradient(bottom, #c471f5, #fa71cd);*/
-    /*background: -moz-linear-gradient(bottom, #c471f5, #fa71cd);*/
-    /*background: linear-gradient(bottom, #c471f5, #fa71cd);*/
+    background: #fff;
     font-family: Lucida Grande,Lucida Sans Unicode,Lucida Sans,Geneva,Verdana,sans-serif;
 
 }
 
 .app {
+    flex-flow:row;
     display: flex;
-    flex-flow: column;
+    flex-flow: row;
+    flex: 1;
     top: 400px;
-    margin-left: 200px;
-    margin-right: 300px;
-    width: 1200px;
+    padding: 8px;
+    width: 100%;
     height: 100%;
 }
 
@@ -32,9 +30,6 @@ header {
 
 .plan {
     display: flex;
-    /*flex: 1;*/
-    top:400px;
-    height: 660px;
     margin: 0 1px;
 }
 
@@ -42,13 +37,9 @@ header {
     display: flex;
     flex-flow: column;
     flex: 1;
-    height: 650px;
-    width: 100px;
     background-color: #eeeeee;
     margin: 0 2px;
     padding: 8px;
-    transition: all 0.2s linear;
-
 }
 .plan .time .list-item2 {
     color: #fff;
@@ -58,32 +49,31 @@ header {
     padding: 10px 15px;
     text-align: center;
     margin: 4px 0px;
-    height: 100px;
+    height: 50px;
+    width: 100px;
     border-width: thin;
     border-style: solid;
     border-color: #bdbdbd;
 }
 
 
-
-
 .scheduler {
     display: flex;
-    flex: 1;
     flex-flow: row;
-    width: 100%;
-    height: 650px;
     overflow-x: scroll;
+    margin-left: 50px;
+    width: 70%;
+    height: 60%;
 }
 
 .scheduler2 {
 
     display: none;
-    flex: 1;
     flex-flow: row;
-    width: 100%;
-    height: 650px;
     overflow-x: scroll;
+    margin-left: 50px;
+    width: 70%;
+    height: 60%;
 }
 
 .day {
@@ -101,10 +91,10 @@ header {
     background: #fff;
     margin: 0 2px;
 }
+
 .lists {
     display: flex;
     flex: 1;
-    width: 500px;
     margin: 0 5px;
     background-color: #eeeeee;
     border-width: thin;
@@ -117,8 +107,6 @@ header {
     display: flex;
     flex-flow: column;
     flex: 1;
-    height: 650px;
-    width: 100px;
     margin: 0 2px;
     padding: 8px;
     transition: all 0.2s linear;
@@ -133,8 +121,9 @@ header {
     border-radius: 8px;
     padding: 10px 15px;
     text-align: center;
+    width: 150px;
     margin: 4px 0px;
-    height: 100px;
+    height: 50px;
     border-width: thin;
     border-style: solid;
     border-color: #bdbdbd;
@@ -144,22 +133,13 @@ header {
 .subjects {
     display: flex;
     flex-flow: column;
-    flex: 1;
-    overflow-y: scroll;
-
-    width: 150px;
-    height: 680px;
+    overflow-x: scroll;
     padding: 8px;
-    margin-left: 80px;
-    margin-right: 80px;
+    height: 500px;
 
     background-color: #eeeeee;
-    transition: all 0.2s linear;
-    position: absolute;
     border: 1px solid  #bdbdbd;
 
-    top: 60px;
-    right: 30px;
 }
 
 .classrooms {
@@ -176,20 +156,15 @@ header {
     transition: all 0.2s linear;
     border: 1px solid  #bdbdbd;
 
-    position: absolute;
-    left: 10px;
-    top: 240px;
 }
 
 .subject.subject {
     flex-shrink: 0;
-    display: flex;
     background-color:  #f498b7;
     border-radius: 8px;
     padding: 10px 15px;
     text-align: center;
-    margin-bottom: 4px;
-    margin-top: 4px;
+    margin-top:10px;
     height: 50px;
     width: 100px;
     font-size: 3mm;
@@ -210,12 +185,12 @@ header {
 
 /* css for switcher */
 .switch {
-    position: absolute;
-    left: 30px;
-    top: 20px;
+    position: relative;
     display: inline-block;
     width: 60px;
     height: 34px;
+    margin-bottom: 50px;
+    margin-top:5px;
 }
 
 .switch input {
@@ -270,15 +245,22 @@ input:checked + .slider:before {
     border-radius: 50%;
 }
 
-/* css for input*/
 .input {
-    position: absolute;
-    left: 10px;
-    top: 200px;
+
 }
-/*css for button*/
 .button {
-    position: absolute;
-    left: 10px;
-    top: 220px;
+    margin-bottom: 20px;
 }
+.buttonandsliders {
+    flex-flow: column;
+    width: 10%
+}
+
+.subjectsAndText {
+    margin-left: 150px;
+    flex-flow: column;
+}
+
+
+
+

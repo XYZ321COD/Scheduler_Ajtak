@@ -8,10 +8,23 @@
     <link rel="stylesheet" href="main.css"/>
 </head>
 <body>
+<header>
+    <h1 id="tableName">Year-1</h1>
+</header>
 <div class="app">
-    <header>
-        <h1 id="tableName">Year-1</h1>
-    </header>
+    <div class="buttonandsliders">
+        <p>Switch Years</p>
+        <label class="switch">
+            <input type="checkbox" checked>
+            <span class="slider round"></span>
+        </label>
+        <p>Free Classrooms</p>
+        <div class="input">
+            <input id="text" placeholder="Enter day and hour: E.g. Monday 8:00">
+        </div>
+        <button class="button" onclick="findAvailClassrooms()" id="btn1"> Click me</button>
+        <div class="classrooms" id="tableOfClassrooms"></div>
+    </div>
     <div class="scheduler" id="scheduler1">
         <div class="day">
             <div class="name">Time</div>
@@ -80,19 +93,12 @@
             </div>
         </div>
     </div>
-    <header>
-        <div class="h1">Subjects</div>
-    </header>
-    <div class="subjects"  id="tableOfSubjects">
+
+    <div class="subjectsAndText">
+        <p> Subjects </p>
+        <div class="subjects" id="tableOfSubjects">
+        </div>
     </div>
-    <div class="classrooms" id="tableOfClassrooms"></div>
-    <label class="switch">
-        <input type="checkbox" checked>
-        <span class="slider round"></span>
-    </label>
-    <input class="input" id="text" placeholder="Enter day and hour: E.g. Monday 8:00">
-    <br>
-    <button class ="button" onclick="findAvailClassrooms()" id="btn1"> Click me </button>
 </div>
 <script type="text/javascript" src="ClassRooms.js"></script>
 <script type="text/javascript" src="Subjects.js"></script>
