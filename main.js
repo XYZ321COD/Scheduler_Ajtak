@@ -5,6 +5,7 @@
  */
 let Classrooms = [];
 let mapOfClassesForEachHourInDay = {};
+
 /**
  * @var draggedItem
  * @description One of the subject-boxes that we are currently dragging.
@@ -12,17 +13,29 @@ let mapOfClassesForEachHourInDay = {};
  */
 let draggedItem = null;
 
+function savefile() {
+    let intro = '<!DOCTYPE html>';
+    let end = '</html>'
+    let a = document.createElement("a");
+    let text = document.getElementById("index").innerHTML;
+    let text2 = intro + '<script src="schedulers.js"></script>\n' + '\n' + text + '\n' + end;
+    let file = new Blob([text2], {type: 'text/html'});
+    a.href = URL.createObjectURL(file);
+    a.download = "Plan";
+    a.click();
 
-function findAvailClassrooms(){
-let str = document.getElementById("text").value;
-let element  = document.getElementById("tableOfClassrooms");
-element.style.display = 'flex';
-element.innerText = '';
-let potentialclassroom = Classrooms.filter(obj => {
+}
+
+function findAvailClassrooms() {
+    let str = document.getElementById("text").value;
+    let element = document.getElementById("tableOfClassrooms");
+    element.style.display = 'flex';
+    element.innerText = '';
+    let potentialclassroom = Classrooms.filter(obj => {
         return !mapOfClassesForEachHourInDay[str].includes(obj);
     });
     potentialclassroom.forEach(obj => {
-        document.getElementById('tableOfClassrooms').innerHTML += '<div class="subject"> classroom '+ +obj.classroom + '</div>';
+        document.getElementById('tableOfClassrooms').innerHTML += '<div class="subject"> classroom ' + +obj.classroom + '</div>';
     });
 
 }
@@ -224,6 +237,9 @@ function addClickEvent(object) {
                             break;
                         }
                     }
+                    if (iter === listOfPotentialClassrooms.length) {
+                        throw "Every enough classroom is reserved";
+                    }
                 } catch (err) {
                     window.alert(err);
                     this.classroom = "";
@@ -231,11 +247,9 @@ function addClickEvent(object) {
                 }
             } catch (err) {
                 window.alert("Entered value " + err);
-                this.classroom = "";
+                this.classroom = " ";
             }
-            if (actualElement === null) {
-                window.alert("Every enough classroom is reserved")
-            } else {
+            if (actualElement !== null) {
                 this.style.fontSize = '3mm';
                 this.innerHTML = this.innerHTML + ' classroom: ' + this.classroom;
                 this.clicked = true;
@@ -259,13 +273,13 @@ function addClickEvent(object) {
 }
 
 window.onload = function () {
-    appendData(classRoomsData);
-    appendSubjects(subjectsData);
     appendTimeBoxes();
-    createMap();
     appendDays();
     appendSubjectBoxes();
     placeholdersFunctionality();
+    appendData(classRoomsData);
+    appendSubjects(subjectsData);
+    createMap();
     loadSubjects();
 };
 

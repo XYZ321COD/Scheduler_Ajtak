@@ -261,6 +261,11 @@ input:checked + .slider:before {
     flex-flow: column;
 }
 
+.button2{
+    margin-top: 20px;
+
+}
+
 
 
 
