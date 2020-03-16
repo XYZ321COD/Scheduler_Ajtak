@@ -206,8 +206,31 @@ function addDropEvent(object) {
         }
     });
 }
-
-
+function addRightClickEvent(object) {
+    object.addEventListener('contextmenu', function () {
+        if(this.dropped && !this.clicked) {
+            this.innerHTML = "";
+            this.style.backgroundColor = this.lastcolor;
+            this.dropped = false;
+            this.style.fontSize ='4mm';
+        }
+        if(this.dropped && this.clicked) {
+            for(let iter = 0 ; iter < mapOfClassesForEachHourInDay[this.id].length;iter++){
+                if(mapOfClassesForEachHourInDay[this.id][iter].classroom === this.classroom) {
+                    const index = mapOfClassesForEachHourInDay[this.id].indexOf(mapOfClassesForEachHourInDay[this.id][iter]);
+                    if (index > -1) {
+                        mapOfClassesForEachHourInDay[this.id].splice(index, 1);
+                    }
+                }
+            }
+            this.innerHTML = "";
+            this.style.backgroundColor = this.lastcolor;
+            this.dropped = false;
+            this.clicked = false;
+            this.style.fontSize ='4mm';
+        }
+});
+}
 /**
  * @description How placeholder object will react to clicking on him.
  * @param {Object} object
@@ -269,6 +292,7 @@ function addClickEvent(object) {
         addDragLeaveEvent(list);
         addDropEvent(list);
         addClickEvent(list);
+        addRightClickEvent(list);
     });
 }
 

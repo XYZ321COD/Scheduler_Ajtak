@@ -26,12 +26,16 @@ document.addEventListener('DOMContentLoaded', function () {
      * @description Variable representing switcher visible on our web-page
      * @type {Object}
      */
-    let checkbox = document.querySelector('input[type="checkbox"]');
-
+    let checkbox = document.querySelector('input[type="checkbox"]');  // This part grabs the html object/entity that I highlighted
+    
+    /// And right now we are adding function that will be called depend on state of CheckBox
     checkbox.addEventListener('change', function () {
+        // if checkbox is checked show, sheduler1 and hide scheduler2 and also show "Year-1" headline
         if (checkbox.checked) {
             showscheduler1()
-        } else {
+        }
+        // if checkbox is not checked, show sheduler2 and hide scheduler1 and also show "Year-2" headline
+         else {
             showscheduler2()
         }
     });
